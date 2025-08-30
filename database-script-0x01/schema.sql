@@ -3,7 +3,7 @@ CREATE DATABASE airbnb;
 USE airbnb;
 
 CREATE TABLE User(
-    id CHAR(36) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     first_name varchar(50) not null,
     last_name varchar(50) not null,
     email  varchar(50) not null unique,
@@ -17,7 +17,7 @@ CREATE TABLE User(
 create index index_email on User(email);
 
 CREATE TABLE Property(
-    id CHAR(36) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     name  varchar(50) not null,
     description text not null,
     location varchar(50) not null,
@@ -29,7 +29,7 @@ CREATE TABLE Property(
 );
 
 CREATE TABLE Booking(
-    id CHAR(36) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     start_date DATE not null,
     end_date DATE not null,
     total_price decimal(10,2) not null,
@@ -44,7 +44,7 @@ CREATE TABLE Booking(
 CREATE INDEX index_booking_property_id ON Booking(property_id);
 
 create table Payment(
-    id CHAR(36) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     amount decimal(10, 2) not null,
     payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     payment_method ENUM('credit_card', 'paypal', 'stripe') not null,
@@ -56,7 +56,7 @@ CREATE INDEX index_payment_booking_id ON Payment(booking_id);
 
 
 create table Review(
-    id CHAR(36) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     comment text not null,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -67,7 +67,7 @@ create table Review(
 );
 
 create table Message(
-    id CHAR(36) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     message_body text not null,
     sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     sender_id CHAR(36),

@@ -11,10 +11,5 @@ ORDER BY Property.id;
 
 SELECT *
 FROM User
-LEFT JOIN Booking
-ON User.id = Booking.user_id
-UNION
-SELECT *
-FROM User
-RIGHT JOIN Booking
+FULL OUTER JOIN Booking
 ON User.id = Booking.user_id;

@@ -1,20 +1,20 @@
-select *
-from Booking
-inner join User
-on Booking.user_id = User.id
+SELECT *
+FROM Booking
+INNER JOIN User
+ON Booking.user_id = User.id
 
-select *
-from Property
-left join Review
-on Property.id = Review.property_id
+SELECT *
+FROM Property
+LEFT JOIN Review
+ON Property.id = Review.property_id
 
 
-select *
-from User
-left join Booking
-on User.id = Booking.user_id
+SELECT *
+FROM User
+LEFT JOIN Booking
+ON User.id = Booking.user_id
 UNION
-select *
-from User
-right join Booking
-on User.id = Booking.user_id;
+SELECT *
+FROM User
+RIGHT JOIN Booking
+ON User.id = Booking.user_id;

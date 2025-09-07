@@ -7,7 +7,7 @@ GROUP BY Booking.id
 SELECT 
     Property.id,
     COUNT(Booking.id) AS total_booking,
-    RANK() OVER (ORDER BY COUNT(Booking.id) DESC) AS booking_rank
+    ROW_NUMBER() OVER (ORDER BY COUNT(Booking.id) DESC) AS booking_rank
 FROM Property
 LEFT JOIN Booking
     ON Property.id = Booking.property_id

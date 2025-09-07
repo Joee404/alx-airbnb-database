@@ -5,10 +5,9 @@ EXPLAIN SELECT
     p.name AS property_name,
     pay.amount,
     pay.status
-FROM Booking b
-JOIN User 
-ON Booking.user_id = User.id
-JOIN Property
-ON Booking.property_id = Property.id
-JOIN Payment
-ON Booking.payment_id = Payment.id
+FROM bookings b
+JOIN users u ON b.user_id = u.id
+JOIN properties p ON b.property_id = p.id
+JOIN payments pay ON pay.booking_id = b.id
+WHERE pay.status = 'completed'
+  AND b.start_date >= '2024-01-01';

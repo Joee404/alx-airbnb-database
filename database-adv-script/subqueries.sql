@@ -7,3 +7,12 @@ WHERE p.id IN (
     GROUP BY r.property_id
     HAVING AVG(r.rating) > 4.0
 );
+
+-- Correlated subquery: find users who have made more than 3 bookings
+SELECT u.id, u.first_name, u.last_name
+FROM users u
+WHERE (
+    SELECT COUNT(b.id)
+    FROM bookings b
+    WHERE b.user_id = u.id
+) > 3;
